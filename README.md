@@ -58,17 +58,52 @@
    + 概念：闭包就是可以通过返回一个函数达到保存当时执行环境里的一种技术。
         + js里变量访问遵循词法作用域，说白了就是由写代码时候的位置决定的。所以，只要嵌套的作用域里返回一个函数（js里函数是一等公民，可以传递），那这个函数就会引用当时的执行环境，不受函数执行完销毁作用域的影响。
  #### Event loop
-   js事件分为宏任务，微任务
-   + 宏任务包括 setTimeout、script等
-   + 微任务最常用的就是Promise
-   + 一次完整的事件循环，包括以下几项
-      + 执行同步代码，这属于宏任务
-      + 执行栈为空，查询是否有微任务需要执行
-      + 执行所有微任务
-      + 必要的话渲染 UI
-      + 然后开始下一轮 Event loop，执行宏任务中的异步代码                   
-       
-   
+   + 因为js是单线程的，但是浏览器是多线程的。常驻的线程包括，ajax请求、setTimeout定时器、UI渲染、dom或window事件，他们可以用来进行宏任务，然后就是promise等的微任务。
+   + 事件循环：
+        1. 执行宏任务队列中第一个任务，执行完后移除它
+        2. 执行所有的微任务，执行完后移除它们                 
+        3. 执行下一轮宏任务（重复步骤2）
+        + 如此循环就形成了event loop，其中，每轮执行一个宏任务和所有的微任务
+        
+        [讲的不错] : https://www.cnblogs.com/daisygogogo/p/10116694.html  
+#### 函数节流、防抖
++ 函数节流：是确保函数特定的时间内至多执行一次。(始终是延迟500毫秒再调用)
+```
+    function fun(){
+      console.log('onresize')
+    }
+    function throttle(method,context){
+              clearTimeout(method.timer);
+              method.timer=setTimeout(function(){
+                  method.call(context);
+              },500);
+          }
     
-      
-  
+    window.onresize = ()=>throttle(fun,window)  
+```   
++ 函数防抖:是函数在特定的时间内不被再调用后执行。(只在规定的时间内执行一次)
+```
+// 函数节流
+var canRun = true;
+document.getElementById("throttle").onscroll = function(){
+if(!canRun){
+  return
+}
+canRun = false
+setTimeout( function () {
+    console.log("函数节流")
+    canRun = true
+  }, 500)
+}
+```  
+#### 跨域
+   + 概念：因为同源策略的影响，浏览器会对与页面地址不同域的请进行拦截，收不到响应
+   + 解决方案
+        1. cors;后端设置请求头，允许当前出错的域访问当前接口
+        2. jsonp:利用script标签不受同源策略影响的小技巧，让前端利用script src指向一个后端api，将函数名字与请求参数拼到查询参数中，这样服务器会返回一段js代码，主要是调用前端预先写好的函，取到参数。
+        3. 开发环境，起个node服务器，配置代理，因为服务器与服务器之间是不存在跨域问题的
+        4. 服务器上利用Nginx做反向代理（没试过）
+#### 前端必会的算法
+   [算法] : https://blog.csdn.net/weixin_38984353/article/details/80393412
+#### 动画
+1. https://juejin.im/post/5ca59688f265da30c3478e19
