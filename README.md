@@ -42,7 +42,7 @@
  #### 原型与es6 class
    + class新语法: http://www.php.cn/js-tutorial-406259.html 
    + 原型
-      + 原型对象有一个constructor属性，指向该原型对象对应的构造函数。
+      + 原型对象有一个constructor属性，指向x该原型对象对应的构造函数。
       + 构造函数有一个prototype属性，指向实例对象的原型对象。
       + 实例对象有一个__proto__属性，指向该实例对象对应的原型对象
 #### 强制隐式转换
