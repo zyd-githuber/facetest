@@ -1,0 +1,144 @@
+<!-- 第一种
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+    }
+    .left{
+        float: left;
+        width: 200px;
+        background-color: red
+    }
+    .main{
+        margin-left: 200px;
+        margin-right: 200px;
+        border: 1px solid red;
+        box-sizing: border-box;
+    }
+    .right{
+        width: 200px;
+        background-color: blue;
+        float: right;
+    }
+</style>
+<body>
+  <div id="app">
+      <div class="left">
+          <h1>left</h1>
+      </div>
+      <div class="right">
+            <h1>right</h1>
+        </div>
+      <div class="main">
+          <h1>888</h1>
+      </div>
+  </div>  
+</body>
+</html> -->
+
+<!-- 第二种
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+    }
+    #app{
+        display: flex;
+        justify-content:space-between;
+    }
+    .left{
+        width: 200px;
+        background-color: red;
+    }
+    .main{
+        border: 1px solid red;
+        box-sizing: border-box;
+        flex-grow:1;
+        /* flex-grow:1;//定义项目是否平分剩下的区域，也就是是否放大 */
+    }
+    .right{
+        width: 200px;
+        background-color: blue;
+    }
+</style>
+<body>
+  <div id="app">
+      <div class="left">
+          <h1>left</h1>
+      </div>
+      <div class="main">
+          <h1>888</h1>
+      </div>
+      <div class="right">
+            <h1>right</h1>
+        </div>
+  </div>  
+</body>
+</html> -->
+
+<!-- 第三种 -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+    }
+    #app{
+        position: relative;
+    }
+    .left{
+        width: 200px;
+        background-color: red;
+        float: left;
+    }
+    .main{
+        border: 1px solid red;
+        box-sizing: border-box;
+        position: absolute;
+        left: 200px;
+        right: 200px;
+        /* flex-grow:1;//定义项目是否平分剩下的区域，也就是是否放大 */
+    }
+    .right{
+        width: 200px;
+        float:right;
+        background-color: blue;
+    }
+</style>
+<body>
+  <div id="app">
+      <div class="left">
+          <h1>left</h1>
+      </div>
+      <div class="main">
+          <h1>888</h1>
+      </div>
+      <div class="right">
+            <h1>right</h1>
+        </div>
+  </div>  
+</body>
+</html>
